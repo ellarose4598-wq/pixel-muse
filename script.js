@@ -5,10 +5,25 @@ function showPage(pageId) {
 }
 
 // SIMPLE AI GENERATOR (you can replace this later)
-function fakeGenerate() {
-    let img = document.getElementById("generated-image");
-    img.src = "https://picsum.photos/600/400?pink&random=" + Math.random();
-}
+// Make sure your HTML has these elements:
+// <input type="text" id="prompt" placeholder="Enter your prompt">
+// <button id="generate">Generate</button>
+// <img id="ai-image" src="" alt="Generated Image">
+
+document.getElementById('generate').addEventListener('click', function() {
+    const prompt = document.getElementById('prompt').value.trim();
+
+    if (!prompt) {
+        alert("Please enter a prompt!");
+        return;
+    }
+
+    // Unsplash URL that searches by the prompt
+    const imageUrl = `https://source.unsplash.com/400x400/?${encodeURIComponent(prompt)}`;
+
+    // Set the image src to the new URL
+    document.getElementById('ai-image').src = imageUrl;
+});
 
 // WHITEBOARD FULL FEATURE SET
 let canvas = document.getElementById("board");
